@@ -22,7 +22,9 @@ void setup()
 void loop() 
 {   
   
-    pwm.setPWM(servoNo, 2, 450);                            // to maximum pulse length then to minimum pulse length.
+    pwm.setPWM(servoNo, 0, 100);                            // to maximum pulse length then to minimum pulse length.
+    pwm.setPWM(servoNo, 7, 100);                            // to maximum pulse length then to minimum pulse length.
+    
   
 
 

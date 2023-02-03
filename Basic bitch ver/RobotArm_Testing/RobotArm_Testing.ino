@@ -23,7 +23,7 @@ void loop() {
 
     servoVal = analogRead(servoRead);
     servoVal = map(servoVal, 0, 1023, 0, 180);
-    servo.write(servoVal);
+    servo.write(90);
 
     Serial.print("Servo ");
     Serial.print(": ");
