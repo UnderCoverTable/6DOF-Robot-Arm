@@ -14,8 +14,9 @@ float AccX,AccY,AccZ,GyroX,GyroY,GyroZ,Temp;
 Servo servos[6];
 const byte servoPins[6] =  {3,5,6,9,10,11};
 float servosCurAngle[6] = {90,90,90,90,90,90};
-int increment = 1;
-int decrement = 1;
+float servosAngleIncrement[6] = {1,1,1,1,1,1};
+
+
 
 void setup(void) {
 
@@ -57,20 +58,19 @@ void loop() {
   mpu.getEvent(&a, &g, &temp);
 
   AccX = a.acceleration.x;
-  Serial.println(AccX);
 
-  if(servosCurAngle[0] != 170 && AccX > 0){
-      servosCurAngle[0] += 5;
-
-  }
-  else if(servosCurAngle[0] != 10 && AccX < 0){
-      servosCurAngle[0] -= 5;
+  if(servosCurAngle[0] != 170 && AccX > 1){
+    servosAngleIncrement[0] = AccX;
+    servosCurAngle[0] += servosAngleIncrement[0];
 
   }
-  Serial.print("MOVING: ");
+  else if(servosCurAngle[0] != 10 && AccX < -1){
+    servosAngleIncrement[0] = AccX;
+    servosCurAngle[0] += servosAngleIncrement[0];
+  }
   Serial.println(AccX);
   servos[0].write(servosCurAngle[0]);
-  delay(150);
+  delay(50);
   
   // AccY = a.acceleration.y;
   // AccZ = a.acceleration.z;
