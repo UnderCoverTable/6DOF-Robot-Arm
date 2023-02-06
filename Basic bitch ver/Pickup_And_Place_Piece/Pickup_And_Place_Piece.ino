@@ -17,7 +17,7 @@ void setup() {
  
   go_and_grab();
 
-  // place_and_drop();
+  place_and_drop();
 
   // delay(1000);
 
@@ -96,7 +96,7 @@ void go_and_grab(){
 
         if(i == 2){
       servos[i].attach(servoPins[i]);
-      servos[i].write(90);
+      servos[i].write(150);
       delay(500);
     }
 
