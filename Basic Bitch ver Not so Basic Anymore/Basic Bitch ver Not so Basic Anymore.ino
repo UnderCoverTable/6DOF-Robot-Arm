@@ -6,6 +6,7 @@ Servo servos[6];
 const byte servoPins[6] =  {3,5,6,9,10,11};
 
 int b8[6] = {90,170,165,90,170,20};
+int h2[6] = {175,170,165,90,170,20};
 
 
 
@@ -35,11 +36,10 @@ void loop() {
 
 void place_and_drop(int *arr){
 
-    SmoothWrite(150,0);
+    // SmoothWrite(150,0);
 
   
-    servos[0].write(arr[0]);
-    SmoothWrite()
+    SmoothWrite(arr[0],0);
     delay(500);
     
     servos[4].write(arr[4]);
