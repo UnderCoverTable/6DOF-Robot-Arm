@@ -16,14 +16,14 @@ void setup() {
 
   arm_init();
   delay(2000);
+
   go_and_grab(b8);
   delay(1000);
+
   arm_init();
   delay(1000);
 
   place_and_drop(b8);
-
-
 
 }
 
