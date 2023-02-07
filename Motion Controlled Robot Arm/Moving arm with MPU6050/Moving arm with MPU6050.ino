@@ -71,6 +71,21 @@ void loop() {
   Serial.println(AccX);
   servos[0].write(servosCurAngle[0]);
   delay(50);
+
+  AccY = a.acceleration.y;
+
+  if(servosCurAngle[2] != 170 && AccY > 1){
+    servosAngleIncrement[2] = AccY;
+    servosCurAngle[2] += servosAngleIncrement[2];
+
+  }
+  else if(servosCurAngle[2] != 10 && AccY < -1){
+    servosAngleIncrement[2] = AccY;
+    servosCurAngle[2] += servosAngleIncrement[2];
+  }
+  Serial.println(AccY);
+  servos[2].write(servosCurAngle[2]);
+  delay(50);
   
   // AccY = a.acceleration.y;
   // AccZ = a.acceleration.z;
