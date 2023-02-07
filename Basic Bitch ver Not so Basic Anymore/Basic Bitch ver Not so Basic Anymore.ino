@@ -6,7 +6,9 @@ Servo servos[6];
 const byte servoPins[6] =  {3,5,6,9,10,11};
 
 int b8[6] = {90,170,165,90,170,20};
-int h2[6] = {175,170,165,90,170,20};
+int g2[6] = {160,170,155,80,170,20};
+int c3[6] = {130,170,165,100,170,20};
+
 
 
 
@@ -14,13 +16,13 @@ int h2[6] = {175,170,165,90,170,20};
 void setup() {
   Serial.begin(9600);
 
-  arm_init();
+  arm_init(1);
   delay(2000);
 
-  go_and_grab(b8);
+  go_and_grab(c3);
   delay(1000);
 
-  arm_init();
+  arm_init(2);
   delay(1000);
 
   place_and_drop(b8);
@@ -35,8 +37,6 @@ void loop() {
 }
 
 void place_and_drop(int *arr){
-
-    // SmoothWrite(150,0);
 
   
     SmoothWrite(arr[0],0);
@@ -68,7 +68,6 @@ void go_and_grab(int *arr){
 
 
     servos[0].write(arr[0]);
-    Serial.println(arr[0]);
     delay(500);
 
 
@@ -101,9 +100,12 @@ void SmoothWrite(int EndAngle,int ServoNumber){
   int startAngle = servos[ServoNumber].read();
   int inc_or_dic;
 
+
+
   if(EndAngle > startAngle){
     inc_or_dic = 0;
   } 
+  
   else{
     inc_or_dic = 1;
   }
@@ -125,12 +127,22 @@ void SmoothWrite(int EndAngle,int ServoNumber){
 
 }
 
-void arm_init(){
+void arm_init(int mode){
 
-  for(int i = 5; i!=-1; i--){
-    servos[i].attach(servoPins[i]);
-    servos[i].write(105);
-    delay(125);
+  if(mode == 1){
+    for(int i = 5; i!=-1; i--){
+      servos[i].attach(servoPins[i]);
+      servos[i].write(105);
+      delay(125);
+    } 
   }
+  else if(mode == 2){
+    for(int i = 1; i!=3; i++){
+      // servos[i].write(105);
+      SmoothWrite(105,i);
+      delay(125);
+    }
+  }
+
 
 }
