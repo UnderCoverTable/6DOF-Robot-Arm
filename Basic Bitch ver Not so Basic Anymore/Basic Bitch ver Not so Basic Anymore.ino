@@ -27,6 +27,22 @@ void setup() {
 
   place_and_drop(b8);
 
+  delay(1000);
+  
+  arm_init(2);
+  delay(2000);
+
+  go_and_grab(b8);
+  delay(1000);
+
+  arm_init(2);
+  delay(1000);
+
+  place_and_drop(g2);
+
+  delay(1000);
+  arm_init(2);
+
 }
 
 
@@ -39,7 +55,8 @@ void loop() {
 void place_and_drop(int *arr){
 
   
-    SmoothWrite(arr[0],0);
+    // SmoothWrite(arr[0],0);
+    servos[0].write(arr[0]);
     delay(500);
     
     servos[4].write(arr[4]);
@@ -138,8 +155,8 @@ void arm_init(int mode){
   }
   else if(mode == 2){
     for(int i = 1; i!=3; i++){
-      // servos[i].write(105);
-      SmoothWrite(105,i);
+      servos[i].write(105);
+      // SmoothWrite(105,i);
       delay(125);
     }
   }
